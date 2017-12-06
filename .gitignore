@@ -2,3 +2,4 @@
 /target
 /out
 /src/main/resources/AccessToken
+/src/main/resources/server.properties
