@@ -1,4 +1,4 @@
-package models;
+package models.Untappd;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,6 +10,7 @@ public class UntappdBeer {
     @JsonProperty("rating_score")
     public Float rating;
 
+    public UntappdBrewery brewery;
 
     public Integer getId() {
         return id;
@@ -33,5 +34,13 @@ public class UntappdBeer {
 
     public void setRating(Float rating) {
         this.rating = rating;
+    }
+
+    public UntappdBrewery getBrewery() {
+        return brewery;
+    }
+
+    public void setBrewery(UntappdBrewery brewery) {
+        this.brewery = brewery;
     }
 }

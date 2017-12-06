@@ -1,4 +1,4 @@
-package util.connection.json;
+package utils.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -7,18 +7,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 
-import javax.inject.Singleton;
 import java.io.IOException;
 
-@Singleton
 public class JsonUtils {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
     public JsonUtils() {
-        objectMapper.registerModule(new Hibernate4Module());
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);

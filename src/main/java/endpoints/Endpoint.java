@@ -1,14 +1,16 @@
 package endpoints;
 
-import models.UntappdBeer;
+import models.Untappd.UntappdBeer;
 import untappd.UntappdService;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.util.List;
 
 @Path("beer")
 public class Endpoint {
@@ -17,11 +19,25 @@ public class Endpoint {
     private UntappdService untappdService;
 
     @GET
+    @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UntappdBeer getBeer() throws IOException {
-        Integer id = 1326951;
-        UntappdBeer beer = untappdService.findBeer(id);
-        return beer;
+    public UntappdBeer getBeerById(@PathParam("id") Integer id) throws IOException {
+        //1326951
+        return untappdService.getBeerByUntappdId(id);
+    }
+
+    @GET
+    @Path("search/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<UntappdBeer> getBeersByName(@PathParam("name") String name) throws IOException {
+        return untappdService.getBeersByName(name);
+    }
+
+    @GET
+    @Path("checkin")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Boolean getBeersByName() throws IOException {
+        return untappdService.checkin();
     }
 
 }
