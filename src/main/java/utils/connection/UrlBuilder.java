@@ -18,7 +18,7 @@ public class UrlBuilder {
         return new URL(getBasicUrl(methodName));
     }
 
-    public URL buildSearchBeers(String name) throws MalformedURLException {
+    public URL buildSearchBeersUrl(String name) throws MalformedURLException {
         String methodName = "search/beer";
         Map<String, Object> params = new HashMap<>();
         params.put("q", name);
@@ -26,7 +26,7 @@ public class UrlBuilder {
         return build(methodName, params);
     }
 
-    public URL buildCheckin(Integer beerId) throws MalformedURLException {
+    public URL buildCheckinUrl(Integer beerId) throws MalformedURLException {
         String methodName = "checkin/add";
         Map<String, Object> params = new HashMap<>();
         params.put("gmt_offset", "1");

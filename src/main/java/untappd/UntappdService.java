@@ -26,12 +26,12 @@ public class UntappdService {
     }
 
     public List<UntappdBeer> getBeersByName(String name) throws IOException {
-        SenderResponse response = messageSender.send(urlBuilder.buildSearchBeers(name), "GET");
+        SenderResponse response = messageSender.send(urlBuilder.buildSearchBeersUrl(name), "GET");
         return response.getResponse().getAllBeers();
     }
 
     public Boolean checkin() throws IOException {
-        SenderResponse response = messageSender.send(urlBuilder.buildCheckin(1721679), "POST");
+        SenderResponse response = messageSender.send(urlBuilder.buildCheckinUrl(1721679), "POST");
         return true;
     }
 
