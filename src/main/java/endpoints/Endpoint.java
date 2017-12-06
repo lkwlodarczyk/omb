@@ -22,7 +22,6 @@ public class Endpoint {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public UntappdBeer getBeerById(@PathParam("id") Integer id) throws IOException {
-        //1326951
         return untappdService.getBeerByUntappdId(id);
     }
 
@@ -36,7 +35,7 @@ public class Endpoint {
     @GET
     @Path("checkin")
     @Produces(MediaType.APPLICATION_JSON)
-    public Boolean getBeersByName() throws IOException {
+    public Boolean checkin() throws IOException {
         return untappdService.checkin();
     }
 

@@ -5,9 +5,11 @@ import utils.json.JsonUtils;
 
 import javax.inject.Inject;
 import javax.net.ssl.HttpsURLConnection;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -24,8 +26,7 @@ public class MessageSender {
         this.jsonUtils = jsonUtils;
     }
 
-    public SenderResponse send(String untappdMethod, String httpMethod) throws IOException {
-        URL url = new URL(UNTAPPD_ADDRESS + untappdMethod);
+    public SenderResponse send(URL url, String httpMethod) throws IOException {
         HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
         connection.setRequestMethod(httpMethod);
 
@@ -57,14 +58,14 @@ public class MessageSender {
     public void post() throws IOException {
         URL url = new URL(UNTAPPD_ADDRESS + "checkin/add");
 
-        Map<String,Object> params = new LinkedHashMap<>();
+        Map<String, Object> params = new LinkedHashMap<>();
         params.put("access_token", "F88C71C7C3C6E9A9F2A032AEE048C138AB0FE6BE");
         params.put("gmt_offset", "-2");
         params.put("timezone", "EST");
         params.put("bid", "1721679");
 
         StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String,Object> param : params.entrySet()) {
+        for (Map.Entry<String, Object> param : params.entrySet()) {
             if (postData.length() != 0) postData.append('&');
             postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
             postData.append('=');
@@ -72,7 +73,7 @@ public class MessageSender {
         }
         byte[] postDataBytes = postData.toString().getBytes("UTF-8");
 
-        HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
+        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
