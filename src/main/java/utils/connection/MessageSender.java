@@ -5,20 +5,15 @@ import utils.json.JsonUtils;
 
 import javax.inject.Inject;
 import javax.net.ssl.HttpsURLConnection;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class MessageSender {
 
-    private final String UNTAPPD_ADDRESS = "https://api.untappd.com/v4/";
     private JsonUtils jsonUtils;
 
     @Inject
@@ -31,6 +26,15 @@ public class MessageSender {
         connection.setRequestMethod(httpMethod);
 
         return jsonUtils.deserialize(getResponseBody(connection), SenderResponse.class);
+    }
+
+    public SenderResponse send(URL url, String httpMethod, Map<String, Object> params) throws IOException {
+        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.getOutputStream().write(getBytesFromParams(params));
+
+        return jsonUtils.deserialize(getResponseBody(conn), SenderResponse.class);
     }
 
     private String getResponseBody(HttpURLConnection connection) throws IOException {
@@ -54,16 +58,7 @@ public class MessageSender {
         return result.toString();
     }
 
-
-    public void post() throws IOException {
-        URL url = new URL(UNTAPPD_ADDRESS + "checkin/add");
-
-        Map<String, Object> params = new LinkedHashMap<>();
-        params.put("access_token", "F88C71C7C3C6E9A9F2A032AEE048C138AB0FE6BE");
-        params.put("gmt_offset", "-2");
-        params.put("timezone", "EST");
-        params.put("bid", "1721679");
-
+    private byte[] getBytesFromParams(Map<String, Object> params) throws UnsupportedEncodingException {
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, Object> param : params.entrySet()) {
             if (postData.length() != 0) postData.append('&');
@@ -71,16 +66,6 @@ public class MessageSender {
             postData.append('=');
             postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
         }
-        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
-
-        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
-        conn.setDoOutput(true);
-        conn.getOutputStream().write(postDataBytes);
-
-        SenderResponse deserialize = jsonUtils.deserialize(getResponseBody(conn), SenderResponse.class);
-        String a = "";
+        return postData.toString().getBytes("UTF-8");
     }
 }

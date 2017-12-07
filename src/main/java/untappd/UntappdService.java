@@ -1,8 +1,10 @@
 package untappd;
 
 import models.SenderResponse;
-import models.Untappd.UntappdBeer;
+import models.requests.CheckinRequest;
+import models.untappd.UntappdBeer;
 import utils.connection.MessageSender;
+import utils.connection.ParamsBuilder;
 import utils.connection.UrlBuilder;
 
 import javax.inject.Inject;
@@ -13,11 +15,13 @@ public class UntappdService {
 
     private MessageSender messageSender;
     private UrlBuilder urlBuilder;
+    private ParamsBuilder paramsBuilder;
 
     @Inject
-    public UntappdService(MessageSender messageSender, UrlBuilder urlBuilder) {
+    public UntappdService(MessageSender messageSender, UrlBuilder urlBuilder, ParamsBuilder paramsBuilder) {
         this.messageSender = messageSender;
         this.urlBuilder = urlBuilder;
+        this.paramsBuilder = paramsBuilder;
     }
 
     public UntappdBeer getBeerByUntappdId(Integer untappdBeerId) throws IOException {
@@ -30,10 +34,8 @@ public class UntappdService {
         return response.getResponse().getAllBeers();
     }
 
-    public Boolean checkin() throws IOException {
-        SenderResponse response = messageSender.send(urlBuilder.buildCheckinUrl(1721679), "POST");
-        return true;
+    public Boolean checkin(CheckinRequest checkinRequest) throws IOException {
+        SenderResponse post = messageSender.send(urlBuilder.buildCheckinUrl(), "POST", paramsBuilder.buildCheckinParams(checkinRequest));
+        return post.getResponse().getResult().equals("success");
     }
-
-
 }

@@ -26,14 +26,10 @@ public class UrlBuilder {
         return build(methodName, params);
     }
 
-    public URL buildCheckinUrl(Integer beerId) throws MalformedURLException {
+    public URL buildCheckinUrl() throws MalformedURLException {
         String methodName = "checkin/add";
-        Map<String, Object> params = new HashMap<>();
-        params.put("gmt_offset", "1");
-        params.put("timezone", "CET");
-        params.put("bid", beerId);
 
-        return build(methodName, params);
+        return new URL(getBasicUrl(methodName));
     }
 
     private URL build(String methodName, Map<String, Object> params) throws MalformedURLException {

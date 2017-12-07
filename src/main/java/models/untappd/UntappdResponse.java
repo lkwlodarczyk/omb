@@ -1,6 +1,7 @@
-package models.Untappd;
+package models.untappd;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,10 @@ public class UntappdResponse {
     private UntappdBeer beer;
     private UntappdBeers beers;
     private UntappdBeers homebrew;
+    private String result;
+    @JsonProperty("checkin_id")
+    private Integer checkinId;
+
 
     public UntappdBeer getBeer() {
         return beer;
@@ -36,7 +41,7 @@ public class UntappdResponse {
     }
 
 
-    public  List<UntappdBeer> getAllBeers(){
+    public List<UntappdBeer> getAllBeers() {
         List<UntappdBeer> untappdBeers = getBeers().getItems().stream().map(item -> {
             UntappdBeer untappdBeer = item.getBeer();
             untappdBeer.setBrewery(item.getBrewery());
@@ -50,6 +55,22 @@ public class UntappdResponse {
         }).collect(Collectors.toList()));
 
         return untappdBeers;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public Integer getCheckinId() {
+        return checkinId;
+    }
+
+    public void setCheckinId(Integer checkinId) {
+        this.checkinId = checkinId;
     }
 }
 

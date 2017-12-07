@@ -1,6 +1,6 @@
 package models;
 
-import models.Untappd.UntappdResponse;
+import models.untappd.UntappdResponse;
 
 public class SenderResponse {
 

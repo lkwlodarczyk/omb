@@ -1,4 +1,4 @@
-package models.Untappd;
+package models.untappd;
 
 public class UntappdBeerItem {
     private UntappdBeer beer;

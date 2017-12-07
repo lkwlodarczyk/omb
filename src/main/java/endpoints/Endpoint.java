@@ -1,13 +1,11 @@
 package endpoints;
 
-import models.Untappd.UntappdBeer;
+import models.requests.CheckinRequest;
+import models.untappd.UntappdBeer;
 import untappd.UntappdService;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.List;
@@ -19,10 +17,10 @@ public class Endpoint {
     private UntappdService untappdService;
 
     @GET
-    @Path("{id}")
+    @Path("{untappdId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UntappdBeer getBeerById(@PathParam("id") Integer id) throws IOException {
-        return untappdService.getBeerByUntappdId(id);
+    public UntappdBeer getBeerById(@PathParam("untappdId") Integer untappdId) throws IOException {
+        return untappdService.getBeerByUntappdId(untappdId);
     }
 
     @GET
@@ -32,11 +30,12 @@ public class Endpoint {
         return untappdService.getBeersByName(name);
     }
 
-    @GET
+    @POST
     @Path("checkin")
     @Produces(MediaType.APPLICATION_JSON)
-    public Boolean checkin() throws IOException {
-        return untappdService.checkin();
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Boolean checkin(CheckinRequest checkinRequest) throws IOException {
+        return untappdService.checkin(checkinRequest);
     }
 
 }

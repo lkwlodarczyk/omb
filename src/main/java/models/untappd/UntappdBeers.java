@@ -1,4 +1,4 @@
-package models.Untappd;
+package models.untappd;
 
 import java.util.List;
 
