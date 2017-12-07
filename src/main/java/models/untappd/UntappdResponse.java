@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class UntappdResponse {
 
     private UntappdBeer beer;
-    private UntappdBeers beers;
-    private UntappdBeers homebrew;
+    private UntappdBeerItems beers;
+    private UntappdBeerItems homebrew;
     private String result;
     @JsonProperty("checkin_id")
     private Integer checkinId;
@@ -24,19 +24,19 @@ public class UntappdResponse {
     }
 
 
-    public UntappdBeers getBeers() {
+    public UntappdBeerItems getBeers() {
         return beers;
     }
 
-    public void setBeers(UntappdBeers beers) {
+    public void setBeers(UntappdBeerItems beers) {
         this.beers = beers;
     }
 
-    public UntappdBeers getHomebrew() {
+    public UntappdBeerItems getHomebrew() {
         return homebrew;
     }
 
-    public void setHomebrew(UntappdBeers homebrew) {
+    public void setHomebrew(UntappdBeerItems homebrew) {
         this.homebrew = homebrew;
     }
 

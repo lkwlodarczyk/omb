@@ -1,4 +1,4 @@
-package untappd;
+package services;
 
 import models.SenderResponse;
 import models.requests.CheckinRequest;

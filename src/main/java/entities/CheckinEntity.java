@@ -9,6 +9,8 @@ public class CheckinEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
+    private Integer untappdId;
     private float rating;
     private String username;
     private Boolean storedInUntappd;
@@ -44,5 +46,13 @@ public class CheckinEntity {
 
     public void setStoredInUntappd(Boolean storedInUntappd) {
         this.storedInUntappd = storedInUntappd;
+    }
+
+    public Integer getUntappdId() {
+        return untappdId;
+    }
+
+    public void setUntappdId(Integer untappdId) {
+        this.untappdId = untappdId;
     }
 }

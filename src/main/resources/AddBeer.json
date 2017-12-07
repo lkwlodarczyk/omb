@@ -1,0 +1,9 @@
+{
+  "untappdId": 1,
+  "name": "piwko",
+  "rating" : 4.26,
+  "brewery":{
+    "untappdId": 1,
+    "name": "Browar"
+  }
+}

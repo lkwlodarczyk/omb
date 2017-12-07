@@ -1,6 +1,8 @@
 package entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -8,21 +10,9 @@ import javax.validation.constraints.NotNull;
 public class BreweryEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @NotNull
     private Integer untappdId;
     @NotNull
     private String name;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Integer getUntappdId() {
         return untappdId;

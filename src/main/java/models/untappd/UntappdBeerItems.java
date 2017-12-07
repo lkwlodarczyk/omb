@@ -2,7 +2,7 @@ package models.untappd;
 
 import java.util.List;
 
-public class UntappdBeers {
+public class UntappdBeerItems {
     private List<UntappdBeerItem> items;
 
 

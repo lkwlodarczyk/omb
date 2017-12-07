@@ -2,7 +2,7 @@ package endpoints;
 
 import models.requests.CheckinRequest;
 import models.untappd.UntappdBeer;
-import untappd.UntappdService;
+import services.UntappdService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -10,8 +10,8 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.List;
 
-@Path("beer")
-public class Endpoint {
+@Path("untappd")
+public class UntappdEndpoint {
 
     @Inject
     private UntappdService untappdService;

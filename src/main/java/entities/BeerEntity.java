@@ -8,10 +8,6 @@ import javax.validation.constraints.NotNull;
 public class BeerEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull
     private Integer untappdId;
 
     @NotNull
@@ -19,14 +15,9 @@ public class BeerEntity {
 
     private Float rating;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "untappdId")
+    private BreweryEntity brewery;
 
     public Integer getUntappdId() {
         return untappdId;
@@ -50,5 +41,13 @@ public class BeerEntity {
 
     public void setRating(Float rating) {
         this.rating = rating;
+    }
+
+    public BreweryEntity getBrewery() {
+        return brewery;
+    }
+
+    public void setBrewery(BreweryEntity brewery) {
+        this.brewery = brewery;
     }
 }
