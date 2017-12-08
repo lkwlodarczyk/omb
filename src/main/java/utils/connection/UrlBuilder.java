@@ -27,7 +27,7 @@ public class UrlBuilder {
     }
 
     public URL buildCheckinUrl() throws MalformedURLException {
-        String methodName = "checkin/add";
+        String methodName = "checkin/createOrUpdate";
 
         return new URL(getBasicUrl(methodName));
     }

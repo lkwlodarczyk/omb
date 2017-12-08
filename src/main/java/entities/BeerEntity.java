@@ -9,23 +9,13 @@ public class BeerEntity {
 
     @Id
     private Integer untappdId;
-
     @NotNull
     private String name;
-
     private Float rating;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "untappdId")
+    @ManyToOne(fetch = FetchType.EAGER)
     private BreweryEntity brewery;
+    private Integer sessionId;
 
-    public Integer getUntappdId() {
-        return untappdId;
-    }
-
-    public void setUntappdId(Integer untappdId) {
-        this.untappdId = untappdId;
-    }
 
     public String getName() {
         return name;
@@ -49,5 +39,21 @@ public class BeerEntity {
 
     public void setBrewery(BreweryEntity brewery) {
         this.brewery = brewery;
+    }
+
+    public Integer getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(Integer sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public Integer getUntappdId() {
+        return untappdId;
+    }
+
+    public void setUntappdId(Integer beerUntappdId) {
+        this.untappdId = beerUntappdId;
     }
 }

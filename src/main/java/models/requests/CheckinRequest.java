@@ -5,6 +5,12 @@ public class CheckinRequest {
     private float rating;
     private String comment;
 
+    public CheckinRequest(Integer untappdBeerId, float rating, String comment){
+        this.untappdBeerId = untappdBeerId;
+        this.rating = rating;
+        this.comment = comment;
+    }
+
     public Integer getUntappdBeerId() {
         return untappdBeerId;
     }

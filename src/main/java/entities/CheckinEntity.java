@@ -1,5 +1,7 @@
 package entities;
 
+import models.requests.CheckinRequest;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +13,9 @@ public class CheckinEntity {
     private Long id;
     @Column(unique = true)
     private Integer untappdId;
+    private Integer untappdBeerId;
     private float rating;
+    private String comment;
     private String username;
     private Boolean storedInUntappd;
 
@@ -54,5 +58,25 @@ public class CheckinEntity {
 
     public void setUntappdId(Integer untappdId) {
         this.untappdId = untappdId;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Integer getUntappdBeerId() {
+        return untappdBeerId;
+    }
+
+    public void setUntappdBeerId(Integer untappdBeerId) {
+        this.untappdBeerId = untappdBeerId;
+    }
+
+    public CheckinRequest getCheckinRequest() {
+        return new CheckinRequest(this.untappdBeerId, this.rating, this.comment);
     }
 }

@@ -13,6 +13,7 @@ public class BreweryEntity {
     private Integer untappdId;
     @NotNull
     private String name;
+    private Integer position;
 
     public Integer getUntappdId() {
         return untappdId;
@@ -28,5 +29,13 @@ public class BreweryEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 }

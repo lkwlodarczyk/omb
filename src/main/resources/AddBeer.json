@@ -1,9 +1,10 @@
 {
-  "untappdId": 1,
-  "name": "piwko",
+  "untappdId": 1721679,
+  "name": "Born to Be Cool",
   "rating" : 4.26,
+  "sessionId": 1,
   "brewery":{
     "untappdId": 1,
-    "name": "Browar"
+    "name": "Browar Aranea"
   }
 }

@@ -3,6 +3,7 @@ package services;
 import models.SenderResponse;
 import models.requests.CheckinRequest;
 import models.untappd.UntappdBeer;
+import models.untappd.UntappdResponse;
 import utils.connection.MessageSender;
 import utils.connection.ParamsBuilder;
 import utils.connection.UrlBuilder;
@@ -34,8 +35,8 @@ public class UntappdService {
         return response.getResponse().getAllBeers();
     }
 
-    public Boolean checkin(CheckinRequest checkinRequest) throws IOException {
+    public UntappdResponse checkin(CheckinRequest checkinRequest) throws IOException {
         SenderResponse post = messageSender.send(urlBuilder.buildCheckinUrl(), "POST", paramsBuilder.buildCheckinParams(checkinRequest));
-        return post.getResponse().getResult().equals("success");
+        return post.getResponse();
     }
 }

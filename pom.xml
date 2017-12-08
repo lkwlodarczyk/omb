@@ -92,7 +92,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.2.12.Final</version>
+            <version>4.3.10.Final</version>
         </dependency>
 
     </dependencies>

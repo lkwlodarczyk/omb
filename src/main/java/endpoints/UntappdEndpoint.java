@@ -2,6 +2,7 @@ package endpoints;
 
 import models.requests.CheckinRequest;
 import models.untappd.UntappdBeer;
+import models.untappd.UntappdResponse;
 import services.UntappdService;
 
 import javax.inject.Inject;
@@ -34,7 +35,7 @@ public class UntappdEndpoint {
     @Path("checkin")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Boolean checkin(CheckinRequest checkinRequest) throws IOException {
+    public UntappdResponse checkin(CheckinRequest checkinRequest) throws IOException {
         return untappdService.checkin(checkinRequest);
     }
 

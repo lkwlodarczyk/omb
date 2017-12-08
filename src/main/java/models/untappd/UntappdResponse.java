@@ -72,5 +72,9 @@ public class UntappdResponse {
     public void setCheckinId(Integer checkinId) {
         this.checkinId = checkinId;
     }
+
+    public Boolean getStatus(){
+        return this.result.equals("success");
+    }
 }
 
